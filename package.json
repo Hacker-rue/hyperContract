@@ -1,14 +1,49 @@
 {
-  "name": "test_app",
+  "name": "vault",
   "version": "1.0.0",
+  "description": "Vault contract in bridge",
   "main": "index.js",
-  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "nyc mocha --recursive",
+    "mocha": "mocha --recursive",
+    "start": "fabric-chaincode-node start"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@grpc/grpc-js": "^1.8.0",
-    "@hyperledger/fabric-gateway": "^1.1.2",
-    "crypto": "^1.0.1",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "util": "^0.12.5"
-  }
+    "fabric-contract-api": "^2.5.2",
+    "fabric-shim": "^2.5.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^4.19.1",
+    "mocha": "^8.0.1",
+    "nyc": "^14.1.1",
+    "sinon": "^6.0.0",
+    "sinon-chai": "^3.2.0"
+  },  
+  "nyc": {
+    "exclude": [
+        "coverage/**",
+        "test/**",
+        "index.js",
+        ".eslintrc.js"
+    ],
+    "reporter": [
+        "text-summary",
+        "html"
+    ],
+    "all": true,
+    "check-coverage": false,
+    "statements": 100,
+    "branches": 100,
+    "functions": 100,
+    "lines": 100
+}
 }
